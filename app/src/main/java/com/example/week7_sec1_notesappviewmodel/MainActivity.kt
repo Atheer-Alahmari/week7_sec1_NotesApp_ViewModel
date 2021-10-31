@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity() {
 //                myDBRoom.NoteDao().insertNote(n)
                  myViewModel.add_Note(input)
 
-                Toast.makeText(applicationContext, "data saved successfully! ", Toast.LENGTH_SHORT)
+                Toast.makeText(applicationContext, "data Added successfully! ", Toast.LENGTH_SHORT)
                     .show()
 
 

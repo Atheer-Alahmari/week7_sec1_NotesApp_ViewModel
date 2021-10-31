@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.example.week7_sec1_notesappviewmodel.models.Notes
@@ -43,9 +44,18 @@ class RV_Adapter (val activity: MainActivity,private val listOf_Note:List<Notes>
                 // Positive button text and action
                 alt.setPositiveButton("Save", DialogInterface.OnClickListener { _, _ ->
                     var input = mEtName.text.toString()
-                    myViewModel.update_Note(idn,input)//--------------------------------------------------------------
                    // myDBRoom.NoteDao().updateNote(Notes(idn,input))
                     activity.updateList()
+
+
+                    if (input.isNotEmpty() ) {
+                        myViewModel.update_Note(idn,input)//--------------------------------------------------------------
+                        activity.updateList()//text_View.text =input
+
+                        Toast.makeText(activity, "Update Success!", Toast.LENGTH_SHORT).show()
+                    }else {
+                        Toast.makeText(activity, "Update Doesn't Work , Something Empty ", Toast.LENGTH_SHORT).show()
+                    }
                 })
 
 
@@ -63,6 +73,7 @@ class RV_Adapter (val activity: MainActivity,private val listOf_Note:List<Notes>
             deleteIcon.setOnClickListener {
                // myDBRoom.NoteDao().deleteNote(Notes(idn))
                 myViewModel.delete_Note(idn)//--------------------------------------------------------------
+                Toast.makeText(activity, "Delete Success!", Toast.LENGTH_SHORT).show()
 
                 activity.updateList()
             }
